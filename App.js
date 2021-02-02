@@ -27,7 +27,14 @@ export default function App() {
         style={{ padding: 10 }}
         keyExtractor={(item, index) => item.key}
         data={goals}
-        renderItem={(itemData) => <GoalItem title={itemData.item.value} />}
+        renderItem={(itemData) => (
+          <GoalItem
+            onDelete={() => {
+              console.log('tap');
+            }}
+            title={itemData.item.value}
+          />
+        )}
       />
     </View>
   );

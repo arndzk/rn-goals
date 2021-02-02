@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  FlatList,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet, View, FlatList, StatusBar } from 'react-native';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
@@ -19,6 +11,11 @@ export default function App() {
       { key: Math.random().toString(), value: goalTitle },
     ]);
   };
+  const removeGoalHandler = (goalId) => {
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.key !== goalId);
+    });
+  };
   return (
     <View style={styles.container}>
       <StatusBar></StatusBar>
@@ -29,9 +26,8 @@ export default function App() {
         data={goals}
         renderItem={(itemData) => (
           <GoalItem
-            onDelete={() => {
-              console.log('tap');
-            }}
+            id={itemData.item.key}
+            onDelete={removeGoalHandler}
             title={itemData.item.value}
           />
         )}

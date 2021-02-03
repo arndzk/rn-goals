@@ -7,6 +7,9 @@ export default function App() {
   const [goals, setGoals] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
   const addGoalHandler = (goalTitle) => {
+    if (goalTitle.length === 0) {
+      return;
+    }
     setGoals((currentGoals) => [
       ...currentGoals,
       { key: Math.random().toString(), value: goalTitle },
